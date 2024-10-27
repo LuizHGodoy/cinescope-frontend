@@ -1,4 +1,4 @@
-import { IMovie } from "./Movie";
+import { IMovie } from "./movie";
 
 export interface MovieResponse {
   movies: IMovie[];
