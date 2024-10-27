@@ -1,12 +1,30 @@
 "use client";
 
+import Header from "@/components/Header";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { MovieList } from "@/components/movie-list";
+import { useEffect, useState } from "react";
 
 export default function Page() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
+
   return (
     <main className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Infinite Movie Scroll</h1>
+      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <MovieList />
+      <ScrollToTopButton />
     </main>
   );
 }
